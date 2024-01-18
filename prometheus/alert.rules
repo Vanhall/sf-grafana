@@ -1,0 +1,27 @@
+groups: 
+- name: example
+  rules:
+  - alert: HTTPCodeNotOk
+    expr: probe_http_status_code != 200
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: "HTTP status != 200"
+      description: ""
+  - alert: HighLatency
+    expr: probe_duration_seconds > 5
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High Latency"
+      description: ""
+  - alert: ServerRestarted
+    expr: (node_time_seconds - node_boot_time_seconds) < 60
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Server Restarted!"
+      description: ""
